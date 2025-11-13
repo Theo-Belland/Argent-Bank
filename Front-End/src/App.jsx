@@ -1,8 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
+import Profile from './pages/profile';
 
 function App(){
   return(
@@ -11,6 +13,14 @@ function App(){
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/sign-in" element={<SignIn />}/>
+
+        <Route path="/profile"
+        element={
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        }
+        />
       </Routes>
       <Footer />
     </BrowserRouter>
