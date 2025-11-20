@@ -13,8 +13,19 @@ body {
   min-height: 100vh;
 }
 
+.app-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
 .main {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centre verticalement le contenu */
+  align-items: center; /* centre horizontalement */
+  padding: 3rem 0; /* ajoute de la marge verticale */
 }
 
 .bg-dark {
@@ -165,14 +176,12 @@ body {
 }
 
 .sign-in-content {
-  box-sizing: border-box;
-  background-color: white;
-  width: 300px;
-  margin: 0 auto;
-  margin-top: 3rem;
-  padding: 2rem;
+  background-color: #fff;
+  width: 320px;
+  padding: 2.5rem;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* effet de profondeur doux */
 }
-
 .sign-in-icon {
   font-size: 5rem;
 }
@@ -186,19 +195,21 @@ body {
 }
 
 .input-wrapper {
-  display: flex;
-  flex-direction: column;
   text-align: left;
   margin-bottom: 1rem;
 }
 
 .input-wrapper label {
   font-weight: bold;
+  margin-right: 15px;
 }
 
 .input-wrapper input {
   padding: 5px;
   font-size: 1.2rem;
+  width: 180px;
+  border-radius: 5px;
+  border: 1px solid black;
 }
 
 .footer {
@@ -219,7 +230,7 @@ body {
   align-items: center;
   border: 1px solid black;
   background-color: #fff;
-  width: 80%;
+  width: 1100px;
   margin: 0 auto;
   flex-direction: column;
   padding: 1.5rem;
@@ -259,7 +270,6 @@ body {
 }
 
 .header {
-  color: #fff;
   margin-bottom: 2rem;
 }
 

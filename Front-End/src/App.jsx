@@ -4,25 +4,32 @@ import Footer from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
-import Profile from './pages/profile';
+import Profile from './pages/profile'; // petit P majuscule pour la convention React
 
-function App(){
-  return(
+function App() {
+  return (
     <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/sign-in" element={<SignIn />}/>
+      {/* Le conteneur principal en flex */}
+      <div className="app-container">
+        <Header />
 
-        <Route path="/profile"
-        element={
-          <ProtectedRoute>
-            <Profile />
-          </ProtectedRoute>
-        }
-        />
-      </Routes>
-      <Footer />
+        {/* Le contenu principal doit être flexible */}
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+
+
+        <Footer />
+      </div>
     </BrowserRouter>
   );
 }
