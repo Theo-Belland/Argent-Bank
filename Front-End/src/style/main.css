@@ -273,6 +273,10 @@ body {
   margin-bottom: 2rem;
 }
 
+.header h1{
+  color: white;
+}
+
 .transaction-button {
   display: block;
   width: 100%;

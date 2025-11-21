@@ -4,10 +4,12 @@ info:
   description: Contains all available API endpoints in this codebase
   version: '1.0.0'
   termsOfService: 'http://swagger.io/terms/'
+
 host: localhost:3001
 basePath: /api/v1
 schemes:
   - http
+
 paths:
   /user/login:
     post:
@@ -33,6 +35,7 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
+
   /user/signup:
     post:
       tags:
@@ -57,6 +60,7 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
+
   /user/profile:
     get:
       security:
@@ -65,8 +69,6 @@ paths:
         - User Module
       summary: User Profile API
       description: API for fetching a user profile
-      #produces:
-       # - application/json
       responses:
         '200':
           description: User profile retrieved successully
@@ -76,6 +78,7 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
+
     put:
       security:
         - Bearer: []
@@ -94,97 +97,44 @@ paths:
         - application/json
       responses:
         '200':
-          description: User profile retrieved successully
+          description: User profile updated successfully
           schema:
             $ref: '#/definitions/ApiResponse'
         '400':
           description: Invalid Fields
         '500':
           description: Internal Server Error
-securityDefinitions:
-  Bearer:
-    type: apiKey
-    name: Authorization
-    in: header
-definitions:
-  User:
-    properties:
-      email:
-        type: string
-        description: user email
-      password:
-        type: string
-        description: user password
-      firstName:
-        type: string
-        description: user first name
-      lastName:
-        type: string
-        description: user last name
-      userName:
-        type: string
-        description: user public name
-  Login:
-    properties:
-      email:
-        type: string
-        description: user email
-      password:
-        type: string
-        description: user password
-  ApiResponse:
-    type: object
-    properties:
-      status:
-        type: integer
-      message:
-        type: string
-      body:
-        type: object
-        properties:
-          id:
-            type: string
-          email:
-            type: string
-  LoginResponse:
-    type: object
-    properties:
-      token:
-        type: string
-  UserProfile:
-    type: object
-    properties:
-      userName:
-        type: string
 
 # ===== Transaction =====
 
-/user/{accountId}/Transactions:
-  get:
-    security: 
-      -Bearer: []
-      tags: [Transaction Module]
-      summary: obtenir toute les Transaction d'un compte
-      parameters: 
-        - name: accountId
-          in: paths
-          required: true
-          type: integer
-          responses: 
-          '200'
-          description: Liste des Transaction
-          schema : 
-            type: array
-            items: 
-              $ref: '#/definitions/Transaction'
-            '401':
-              description: Unauthorized
-
-/user/transactions/{transactionId}:
+  /user/{accountId}/transactions:
     get:
       security:
         - Bearer: []
-      tags: [Transaction Module]
+      tags:
+        - Transaction Module
+      summary: obtenir toutes les Transactions d'un compte
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Liste des Transactions
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Transaction'
+        '401':
+          description: Unauthorized
+
+  /user/transactions/{transactionId}:
+    get:
+      security:
+        - Bearer: []
+      tags:
+        - Transaction Module
       summary: Détails d’une transaction
       parameters:
         - name: transactionId
@@ -205,7 +155,8 @@ definitions:
     post:
       security:
         - Bearer: []
-      tags: [Transaction Module]
+      tags:
+        - Transaction Module
       summary: Ajouter une note
       parameters:
         - name: transactionId
@@ -222,10 +173,12 @@ definitions:
           description: Note ajoutée
           schema:
             $ref: '#/definitions/Transaction'
+
     put:
       security:
         - Bearer: []
-      tags: [Transaction Module]
+      tags:
+        - Transaction Module
       summary: Modifier une note
       parameters:
         - name: transactionId
@@ -242,10 +195,12 @@ definitions:
           description: Note modifiée
           schema:
             $ref: '#/definitions/Transaction'
+
     delete:
       security:
         - Bearer: []
-      tags: [Transaction Module]
+      tags:
+        - Transaction Module
       summary: Supprimer une note
       parameters:
         - name: transactionId
@@ -262,7 +217,8 @@ definitions:
     post:
       security:
         - Bearer: []
-      tags: [Transaction Module]
+      tags:
+        - Transaction Module
       summary: Ajouter un type (documenté, UI non utilisée)
       parameters:
         - name: transactionId
@@ -277,10 +233,12 @@ definitions:
       responses:
         '200':
           description: Type ajouté
+
     put:
       security:
         - Bearer: []
-      tags: [Transaction Module]
+      tags:
+        - Transaction Module
       summary: Modifier un type (documenté, UI non utilisée)
       parameters:
         - name: transactionId
@@ -295,10 +253,12 @@ definitions:
       responses:
         '200':
           description: Type modifié
+
     delete:
       security:
         - Bearer: []
-      tags: [Transaction Module]
+      tags:
+        - Transaction Module
       summary: Supprimer un type (documenté, UI non utilisée)
       parameters:
         - name: transactionId
@@ -313,7 +273,8 @@ definitions:
     post:
       security:
         - Bearer: []
-      tags: [Transaction Module]
+      tags:
+        - Transaction Module
       summary: Ajouter une catégorie
       parameters:
         - name: transactionId
@@ -330,10 +291,12 @@ definitions:
           description: Catégorie ajoutée
           schema:
             $ref: '#/definitions/Transaction'
+
     put:
       security:
         - Bearer: []
-      tags: [Transaction Module]
+      tags:
+        - Transaction Module
       summary: Modifier une catégorie
       parameters:
         - name: transactionId
@@ -350,10 +313,12 @@ definitions:
           description: Catégorie modifiée
           schema:
             $ref: '#/definitions/Transaction'
+
     delete:
       security:
         - Bearer: []
-      tags: [Transaction Module]
+      tags:
+        - Transaction Module
       summary: Supprimer une catégorie
       parameters:
         - name: transactionId
@@ -439,7 +404,6 @@ definitions:
       category: { type: string }
       note: { type: string }
 
-  # 👉 Exemples pour pré-remplir le Try it out
   NotePayload:
     type: object
     required: [note]
@@ -447,8 +411,6 @@ definitions:
       note:
         type: string
         example: "Déjeuner avec client"
-    example:
-      note: "Déjeuner avec client"
 
   CategoryPayload:
     type: object
@@ -457,8 +419,6 @@ definitions:
       category:
         type: string
         example: "Food"
-    example:
-      category: "Food"
 
   TypePayload:
     type: object
@@ -467,5 +427,3 @@ definitions:
       type:
         type: string
         example: "credit"
-    example:
-      type: "credit"           
