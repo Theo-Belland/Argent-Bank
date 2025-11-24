@@ -23,9 +23,9 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* centre verticalement le contenu */
-  align-items: center; /* centre horizontalement */
-  padding: 3rem 0; /* ajoute de la marge verticale */
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 0;
 }
 
 .bg-dark {
@@ -34,16 +34,16 @@ body {
 
 .sr-only {
   border: 0 !important;
-  clip: rect(1px, 1px, 1px, 1px) !important; /* 1 */
+  clip: rect(1px, 1px, 1px, 1px) !important;
   -webkit-clip-path: inset(50%) !important;
-  clip-path: inset(50%) !important; /* 2 */
+  clip-path: inset(50%) !important;
   height: 1px !important;
   margin: -1px !important;
   overflow: hidden !important;
   padding: 0 !important;
   position: absolute !important;
   width: 1px !important;
-  white-space: nowrap !important; /* 3 */
+  white-space: nowrap !important;
 }
 
 .main-nav {
@@ -110,40 +110,6 @@ body {
   font-size: 0.9rem;
 }
 
-@media (min-width: 920px) {
-  .hero {
-    height: 400px;
-    background-position: 0% 33%;
-  }
-
-  .hero-content {
-    position: absolute;
-    top: 50px;
-    right: 50px;
-    width: 300px;
-    margin: 2rem;
-  }
-
-  .hero-content .subtitle {
-    font-size: 1.5rem;
-  }
-
-  .hero-content .text {
-    font-size: 1.2rem;
-  }
-}
-
-.features {
-  display: flex;
-  flex-direction: column;
-}
-
-@media (min-width: 920px) {
-  .features {
-    flex-direction: row;
-  }
-}
-
 .feature-icon {
   width: 100px;
   border: 10px solid #00bc77;
@@ -163,25 +129,39 @@ body {
   margin-bottom: 0.5rem;
 }
 
+/* ------------------------------------------
+   SIGN-IN — Responsive
+------------------------------------------ */
+.sign-in-content {
+  background-color: #fff;
+  width: 90%;                  /* prend 90% de l’écran sur mobile */
+  max-width: 400px;            /* jamais plus large que 400px */
+  padding: 2.5rem;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+  display: flex;
+  flex-direction: column;      /* tout en colonne */
+  align-items: center;         /* centré horizontalement */
+  margin: 2rem auto;           /* centré dans la page */
+  box-sizing: border-box;
+  text-align: center;
+}
+
 .sign-in-button {
   display: block;
-  width: 100%;
+  width: 100%;                 /* prend toute la largeur du container */
   padding: 8px;
   font-size: 1.1rem;
   font-weight: bold;
   margin-top: 1rem;
-  border-color: #00bc77;
+  border: 1px solid #00bc77;
   background-color: #00bc77;
   color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.sign-in-content {
-  background-color: #fff;
-  width: 320px;
-  padding: 2.5rem;
-  border-radius: 6px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* effet de profondeur doux */
-}
 .sign-in-icon {
   font-size: 5rem;
 }
@@ -224,24 +204,28 @@ body {
   padding: 0;
 }
 
+/* ------------------------------------------
+   ACCOUNT — Version responsive
+------------------------------------------ */
 .account {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border: 1px solid black;
   background-color: #fff;
-  width: 1100px;
-  margin: 0 auto;
-  flex-direction: column;
+  width: 90vw;           /* prend 90% de l’écran sur mobile */
+  max-width: 1400px;     /* jamais plus grand que 1400px */
+  margin: 0 auto 2rem;
+  flex-direction: column;  /* mobile first */
   padding: 1.5rem;
   box-sizing: border-box;
   text-align: left;
-  margin-bottom: 2rem;
+  gap: 1.5rem;
 }
 
 .account-amount {
-  margin: 0;
-  font-size: 2.5rem;
+  margin: 0.3rem 0;
+  font-size: 2rem;
   font-weight: bold;
 }
 
@@ -257,7 +241,6 @@ body {
 }
 
 .account-content-wrapper {
-  width: 100%;
   flex: 1;
 }
 
@@ -273,32 +256,70 @@ body {
   margin-bottom: 2rem;
 }
 
-.header h1{
+.header h1 {
   color: white;
 }
 
 .transaction-button {
   display: block;
-  width: 100%;
-  padding: 8px;
+  width: 100%;   /* mobile first */
+  padding: 10px;
   font-size: 1.1rem;
   font-weight: bold;
-  margin-top: 1rem;
-  border-color: #00bc77;
   background-color: #00bc77;
+  border: 1px solid #00bc77;
   color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
+.features {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ------------------------------------------
+   MEDIA QUERIES
+------------------------------------------ */
 @media (min-width: 720px) {
+  /* Account becomes row */
   .account {
     flex-direction: row;
-  }
-
-  .account-content-wrapper.cta {
-    flex: 0;
+    align-items: center;
+    gap: 0;
   }
 
   .transaction-button {
     width: 200px;
+  }
+
+  /* Sign-in content desktop width */
+  .sign-in-content {
+    width: 320px;       /* largeur fixe sur desktop */
+    padding: 2.5rem;
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 920px) {
+  .hero {
+    height: 400px;
+    background-position: 0% 33%;
+  }
+
+  .hero-content {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    width: 300px;
+    margin: 2rem;
+  }
+
+  .hero-content .subtitle {
+    font-size: 1.5rem;
+  }
+
+  .hero-content .text {
+    font-size: 1.2rem;
   }
 }
