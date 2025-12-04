@@ -1,3 +1,9 @@
+/* =====================================================
+   FULL SITE CSS — Desktop-first (default = desktop)
+   Corrections made: features/account default = row; mobile rules in @media (max-width: 720px)
+   Kept your visual style; only structural/responsive fixes applied.
+===================================================== */
+
 html {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -6,26 +12,25 @@ html {
   color: #2c3e50;
 }
 
+/* body: keep simple — not forcing column globally to avoid cascading layout issues */
 body {
   margin: 0;
-  display: flex;
-  flex-direction: column;
   min-height: 100vh;
+  background: transparent;
 }
 
 .app-container {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+  /* container will adapt; avoid forcing flex-direction on parent to keep page layout flexible */
+  width: 100%;
 }
 
+/* MAIN — desktop-first */
 .main {
-  flex: 1;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* ok to keep column for vertical centering of hero + features stack */
   justify-content: center;
-  align-items: center;
-  padding: 3rem 0;
+  align-items: stretch;
+  box-sizing: border-box;
 }
 
 .bg-dark {
@@ -46,6 +51,7 @@ body {
   white-space: nowrap !important;
 }
 
+/* NAV */
 .main-nav {
   display: flex;
   justify-content: space-between;
@@ -81,12 +87,17 @@ body {
   width: 200px;
 }
 
+.header{
+  margin-bottom: 10px;
+}
+/* HERO */
 .hero {
   background-position: 0 -50px;
   background-size: cover;
   background-repeat: no-repeat;
   height: 300px;
   position: relative;
+  width: 100%;
 }
 
 .hero-content {
@@ -110,6 +121,18 @@ body {
   font-size: 0.9rem;
 }
 
+/* FEATURES — desktop first: row */
+.features {
+  display: flex;
+  flex-direction: row; /* desktop */
+  gap: 1rem;
+  align-items: stretch;
+  justify-content: center;
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .feature-icon {
   width: 100px;
   border: 10px solid #00bc77;
@@ -120,6 +143,9 @@ body {
 .feature-item {
   flex: 1;
   padding: 2.5rem;
+  background: #fff;
+  border-radius: 6px;
+  box-sizing: border-box;
 }
 
 .feature-item-title {
@@ -129,28 +155,24 @@ body {
   margin-bottom: 0.5rem;
 }
 
-/* ------------------------------------------
-   SIGN-IN — Responsive
------------------------------------------- */
+/* SIGN-IN (desktop-first) */
 .sign-in-content {
   background-color: #fff;
-  width: 90%;                  /* prend 90% de l’écran sur mobile */
-  max-width: 400px;            /* jamais plus large que 400px */
+  width: 320px;               /* desktop default */
   padding: 2.5rem;
   border-radius: 6px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin: 1rem auto;
   display: flex;
-  flex-direction: column;      /* tout en colonne */
-  align-items: center;         /* centré horizontalement */
-  margin: 2rem auto;           /* centré dans la page */
-  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+  box-sizing: border-box;
 }
 
 .sign-in-button {
   display: block;
-  width: 100%;                 /* prend toute la largeur du container */
+  width: 100%;
   padding: 8px;
   font-size: 1.1rem;
   font-weight: bold;
@@ -177,6 +199,7 @@ body {
 .input-wrapper {
   text-align: left;
   margin-bottom: 1rem;
+  width: 100%;
 }
 
 .input-wrapper label {
@@ -187,36 +210,24 @@ body {
 .input-wrapper input {
   padding: 5px;
   font-size: 1.2rem;
-  width: 180px;
+  width: 100%;
+  max-width: 260px;
   border-radius: 5px;
   border: 1px solid black;
+  box-sizing: border-box;
 }
 
-.footer {
-  display: flex;
-  justify-content: center;
-  border-top: 2px solid #ccc;
-  padding: 2rem 0 1.5rem;
-}
-
-.footer-text {
-  margin: 0;
-  padding: 0;
-}
-
-/* ------------------------------------------
-   ACCOUNT — Version responsive
------------------------------------------- */
+/* ACCOUNT — desktop-first (row by default) */
 .account {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border: 1px solid black;
   background-color: #fff;
-  width: 90vw;           /* prend 90% de l’écran sur mobile */
-  max-width: 1400px;     /* jamais plus grand que 1400px */
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto 2rem;
-  flex-direction: column;  /* mobile first */
+  flex-direction: row; /* desktop */
   padding: 1.5rem;
   box-sizing: border-box;
   text-align: left;
@@ -224,8 +235,8 @@ body {
 }
 
 .account-amount {
-  margin: 0.3rem 0;
-  font-size: 2rem;
+  margin: 0;
+  font-size: 2.5rem;
   font-weight: bold;
 }
 
@@ -250,19 +261,12 @@ body {
   color: #fff;
   font-weight: bold;
   padding: 10px;
-}
-
-.header {
-  margin-bottom: 2rem;
-}
-
-.header h1 {
-  color: white;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .transaction-button {
-  display: block;
-  width: 100%;   /* mobile first */
+  display: inline-block;
   padding: 10px;
   font-size: 1.1rem;
   font-weight: bold;
@@ -273,34 +277,19 @@ body {
   border-radius: 4px;
 }
 
-.features {
+.footer {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  border-top: 2px solid #ccc;
+  padding: 2rem 0 1.5rem;
 }
 
-/* ------------------------------------------
-   MEDIA QUERIES
------------------------------------------- */
-@media (min-width: 720px) {
-  /* Account becomes row */
-  .account {
-    flex-direction: row;
-    align-items: center;
-    gap: 0;
-  }
-
-  .transaction-button {
-    width: 200px;
-  }
-
-  /* Sign-in content desktop width */
-  .sign-in-content {
-    width: 320px;       /* largeur fixe sur desktop */
-    padding: 2.5rem;
-    flex-direction: column;
-  }
+.footer-text {
+  margin: 0;
+  padding: 0;
 }
 
+/* HERO larger screens tweaks */
 @media (min-width: 920px) {
   .hero {
     height: 400px;
@@ -321,5 +310,63 @@ body {
 
   .hero-content .text {
     font-size: 1.2rem;
+  }
+}
+
+/* ===================== MOBILE (desktop-first approach) ===================== */
+@media (max-width: 720px) {
+
+  .header{
+    margin-bottom: 10px;
+  }
+  /* Features become vertical on mobile */
+  .features {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Account stacks vertically on mobile */
+  .account {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 90%;         /* take most of the screen */
+    max-width: 480px;
+    margin: 0 auto 1.5rem;
+    gap: 1rem;
+  }
+
+  .account-content-wrapper {
+    width: 100%;
+  }
+
+  .transaction-button {
+    width: 100%;
+  }
+
+  /* Sign-in becomes fluid on mobile */
+  .sign-in-content {
+    width: 90%;
+    max-width: 420px;
+    padding: 1.5rem;
+  }
+
+  /* Hero content smaller */
+  .hero-content {
+    width: calc(100% - 2rem);
+    padding: 1rem;
+    top: 1rem;
+  }
+
+  /* Small adjustments */
+  .feature-item {
+    width: 100%;
+    max-width: 420px;
+  }
+  .main-nav-logo{
+    width: 120px;
+  }
+  .main-nav{
+    margin: 0;
   }
 }
