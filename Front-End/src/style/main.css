@@ -63,6 +63,9 @@ body {
   font-weight: bold;
   color: #2c3e50;
 }
+.main-nav i{
+  margin-right: 5px;
+}
 
 .main-nav a.router-link-exact-active {
   color: #42b983;
@@ -355,7 +358,7 @@ body {
   .hero-content {
     width: calc(100% - 2rem);
     padding: 1rem;
-    top: 1rem;
+    top: 7rem;
   }
 
   /* Small adjustments */

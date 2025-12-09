@@ -1,9 +1,9 @@
 import React from 'react';
 import Feature from '../components/features';
-import iconChat from '../img/icon-chat.png';
-import iconMoney from '../img/icon-money.png';
-import iconSecurity from '../img/icon-security.png';
-import heroImage from '../img/bank-tree.jpeg'
+import iconChat from '../img/icon-chat.webp';
+import iconMoney from '../img/icon-money.webp';
+import iconSecurity from '../img/icon-security.webp';
+import heroImage from '../img/bank-tree.webp'
 
 function Home(){
     return(

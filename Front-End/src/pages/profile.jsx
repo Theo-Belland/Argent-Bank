@@ -10,7 +10,7 @@ export default function Profile(){
     const [isEditing, setIsEditing] = useState(false);
     const [pseudo, setPseudo] = useState(user?.userName || '');
 
-    const displayName = [user?.firstName, user?.lasName].filter(Boolean).join(' ') || 'Tony Stark';
+    const displayName = [user?.firstName, user?.lastName].filter(Boolean).join(' ') || 'Tony Stark';
 
     const onCancel = () => {
         setPseudo(user?.userName || '');

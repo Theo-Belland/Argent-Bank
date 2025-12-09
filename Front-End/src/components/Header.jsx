@@ -1,7 +1,7 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { signOut } from '../features/authSlice'
-import logo from '../img/argentBankLogo.png'
+import logo from '../img/argentBankLogo.webp'
 
 export default function Header() {
   const { user, token } = useSelector((s) => s.auth)
